@@ -1,0 +1,19 @@
+<%- include("../partials/head") %>
+
+<body>
+    <h3><%= title %> Data Product</h3>
+    <form method="POST" action="/products/update/<%= productDetail.data.id %>" >
+        <label for="">name</label>
+        <input type="text" name="name" value="<%= productDetail.data.name %>"><br>
+        <label for="">price</label>
+        <input type="text" name="price" value="<%= productDetail.data.price %>"><br>
+        <label for="">quantity</label>
+        <input type="text" name="stock" value="<%= productDetail.data.stock %>"><br>
+        <button type="submit"><%= title %></button>
+    </form>
+</body>
+
+<script src="/js/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</html>

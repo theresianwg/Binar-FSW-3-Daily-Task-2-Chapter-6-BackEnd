@@ -1,0 +1,21 @@
+<%- include("../partials/head") %>
+
+<body>
+    <h3>Input Data Product baru</h3>
+    <form method="post" action="/products/create" enctype="multipart/form-data" >
+        <label for="">name</label>
+        <input type="text" name="name" placeholder="buku gambar"><br>
+        <label for="">price</label>
+        <input type="text" name="price" placeholder="buku gambar"><br>
+        <label for="">quantity</label>
+        <input type="text" name="stock" placeholder="buku gambar"><br>
+        <label for="">image product</label>
+        <input type="file" name="image"><br>
+        <button type="submit">create</button>
+    </form>
+</body>
+
+<script src="/js/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</html>
