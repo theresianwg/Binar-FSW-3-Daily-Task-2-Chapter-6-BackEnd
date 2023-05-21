@@ -1,4 +1,4 @@
-const { users, shops } = require('../models');
+const { users } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -90,52 +90,6 @@ async function deleteUser(req, res) {
     }
 }
 
-async function createUser(req, res) {
-    try {
-        const { username, password } = req.body
-        
-        const hashedPassword = bcrypt.hashSync(password, 10);
-        const notAvailable = await users.findOne({
-            where: {
-                username
-            }
-        })
-
-        
-        if(notAvailable){
-            res.status(400).json({
-                status: "failed",
-                message: `Data dengan username ${username} telah digunakan`
-            })
-        }
-
-        const newUser = await users.create({
-            username,
-            password : hashedPassword,
-            role: req.body.role
-        })
-         if (password.length >= 8) {
-            res.status(201).json({
-                status: 'success',
-                data: {
-                    user: newUser
-                }
-            });
-        }
-        else {
-            res.status(404).json({
-                status: 'failed',
-                message: `Password harus memiliki minimal 8 karakter`
-            });
-        }
-    } catch (err) {
-        res.status(400).json({
-            status: 'failed',
-            message: err.message
-        })
-    }
-}
-
 // validasi done
 async function login(req, res) {
     try {
@@ -187,6 +141,5 @@ module.exports = {
     getUserById,
     deleteUser,
     editUser,
-    createUser,
     login,
 }
