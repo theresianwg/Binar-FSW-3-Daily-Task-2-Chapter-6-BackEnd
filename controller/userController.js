@@ -1,7 +1,5 @@
 const { users, shops } = require('../models');
-// import bcrypt untuk authentication
 const bcrypt = require('bcrypt');
-// import jsonwebtoken sbg authorization
 const jwt = require('jsonwebtoken');
 
 async function getUsers(req, res) {
@@ -23,7 +21,6 @@ async function getUsers(req, res) {
 
 async function getUserById(req, res) {
     try {
-        // Primary Key = PK
         const id = req.params.id;
         const data = await users.findByPk(id, {
             include: {
@@ -75,7 +72,6 @@ async function editUser(req, res) {
     }
 }
 
-// validasi 
 async function deleteUser(req, res) {
     try {
         const id = req.params.id
@@ -94,16 +90,11 @@ async function deleteUser(req, res) {
     }
 }
 
-
-// validasi done
 async function createUser(req, res) {
     try {
         const { username, password } = req.body
         
-        // bajuin password nya pake bcrypt / proses enkripsi password
         const hashedPassword = bcrypt.hashSync(password, 10);
-
-        // validasi untuk nama unik
         const notAvailable = await users.findOne({
             where: {
                 username
@@ -123,7 +114,6 @@ async function createUser(req, res) {
             password : hashedPassword,
             role: req.body.role
         })
-         // validasi password minimal 8 karakter, tp data masih masuk
          if (password.length >= 8) {
             res.status(201).json({
                 status: 'success',
