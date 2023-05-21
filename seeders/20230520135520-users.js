@@ -15,7 +15,7 @@ module.exports = {
     */
     const hashPassword = await bcrypt.hash("rahasia", 10);
     return queryInterface.bulkInsert('users', [{
-      id : 2,
+      id : 1,
       username : "ciwang",
       password: hashPassword,
       createdAt: new Date(),
