@@ -1,6 +1,7 @@
 const { users } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const secretKey = process.env.SECRET_KEY;
 
 // validasi done
 async function login(req, res) {
@@ -31,7 +32,7 @@ async function login(req, res) {
           username: user.username,
           role: user.role,
         },
-        "rahasia"
+        secretKey
       );
 
       res.status(200).json({

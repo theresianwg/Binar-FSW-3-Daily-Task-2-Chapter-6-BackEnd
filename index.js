@@ -1,3 +1,4 @@
+require("dotenv").config();
 // import atau panggil package yang kita mau pake di aplikasi kita
 const express = require("express");
 
@@ -13,7 +14,7 @@ const corsOptions = {
 
 // framework utk http server
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 5000;
 
 // middleware, untuk baca json
 app.use(express.json());
