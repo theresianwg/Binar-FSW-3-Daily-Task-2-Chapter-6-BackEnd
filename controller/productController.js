@@ -1,14 +1,12 @@
-const { product } = require('../models');
+const { products } = require('../models');
 
 async function getProducts(req, res) {
     try {
-        const products = await product.findAll();
+        const data = await products.findAll();
 
         res.status(200).json({
             status: 'success',
-            data: {
-                products
-            }
+            data
         })
     } catch (err) {
         res.status(404).json({
@@ -20,7 +18,7 @@ async function getProducts(req, res) {
 
 async function searchProduct(req, res) {
     try {
-        const products = await product.findAll({
+        const data = await products.findAll({
             where: {
                 name: {
                     [Op.endsWith]: req.query.name
@@ -30,9 +28,7 @@ async function searchProduct(req, res) {
 
         res.status(200).json({
             status: 'success',
-            data: {
-                products
-            }
+            data
         })
     } catch (err) {
         res.status(404).json({
@@ -46,7 +42,7 @@ async function getProductById(req, res) {
     try {
         // Primary Key = PK
         const id = req.params.id;
-        const data = await product.findByPk(id);
+        const data = await products.findByPk(id);
 
         // validasi jika id tidak ditemukan
          if (data) {
@@ -70,11 +66,14 @@ async function getProductById(req, res) {
 
 async function editProduct(req, res) {
     try {
-        const { name } = req.body;
+        const { name_and_type, detail, stock, amount} = req.body;
         const id = req.params.id;
 
-        await product.update({
-            name
+        await products.update({
+            name_and_type,
+            detail,
+            stock,
+            amount
         }, {
             where: { id }
         })
@@ -94,7 +93,7 @@ async function editProduct(req, res) {
 async function deleteProduct(req, res) {
     try {
         const id = req.params.id
-        await users.destroy({
+        await products.destroy({
             where: {
                 id
             }
@@ -105,14 +104,14 @@ async function deleteProduct(req, res) {
             'message': `data ${id} ini berhasil di hapus`
         })
     } catch (err) {
-        res.status(400).message(err.message)
+        res.status(400).json({ message: err.message });
     }
 }
 
 async function createProduct(req, res) {
     try {
         const { name_and_type, detail, stock, amount, imageUrl, date } = req.body
-        const newProduct = await product.create({
+        const newProduct = await products.create({
             name_and_type,
             detail,
             stock,
@@ -123,7 +122,7 @@ async function createProduct(req, res) {
         res.status(201).json({
             status: 'success',
             data: {
-                product: newProduct
+                products: newProduct
             }
         })
     } catch (err) {
