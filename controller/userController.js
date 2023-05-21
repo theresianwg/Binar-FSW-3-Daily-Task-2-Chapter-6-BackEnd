@@ -162,7 +162,7 @@ async function login(req, res) {
         if (!user) {
             res.status(404).json({
                 status: 'failed',
-                message: `user ${username} tidak ditemukan, dimohon untuk melakukan register terlebih dahulu`
+                message: `user ${username} tidak ditemukan`
             })
         }
         
