@@ -12,8 +12,10 @@ module.exports = async function (req, res, next) {
       });
     }
 
-    const token = req.headers.authorization;
+    const bearerToken = req.headers.authorization;
     // req.headers.authorization => bearer authentication
+
+    const token = bearerToken.split("Bearer ")[1];
 
     // jwt verifikasi tokennya
     const payload = jwt.verify(token, secretKey);
