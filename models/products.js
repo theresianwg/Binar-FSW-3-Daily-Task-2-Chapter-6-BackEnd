@@ -6,21 +6,26 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-
-  products.init({
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true, // Tambahkan baris ini
-      autoIncrement: true,
+  products.init(
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true, // Tambahkan baris ini
+        autoIncrement: true,
+      },
+      userId: DataTypes.INTEGER,
+      name_and_type: DataTypes.STRING,
+      detail: DataTypes.STRING,
+      stock: DataTypes.INTEGER,
+      amount: DataTypes.STRING,
+      imageUrl: DataTypes.TEXT,
+      date: DataTypes.DATE,
     },
-    userId: DataTypes.INTEGER,
-    name_and_type: DataTypes.STRING,
-    detail: DataTypes.STRING,
-    stock: DataTypes.INTEGER,
-    amount: DataTypes.STRING,
-    imageUrl: DataTypes.TEXT,
-    date: DataTypes.DATE,
-  });
+    {
+      sequelize,
+      modelName: "products",
+    }
+  );
 
   // define association here
   products.associate = function (models) {
