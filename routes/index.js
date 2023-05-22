@@ -6,6 +6,7 @@ const router = require("express").Router();
 // const swaggerDocument = require("../docs/swagger.json");
 
 // middleware
+const Auth = require('../middleware/auth');
 
 // API docs => dokumentasi API
 // router.use("/api-docs", swaggerUi.serve);
