@@ -13,5 +13,7 @@
 ### 📌 products ✅
 * CRUD
 
-### 📝 TO DO
-* 📌 OPEN API
+### 📌 OPEN API ✅
+
+### 📝 NOTES Debugging 📝
+* (-) secretKey harus sama dengan jwt

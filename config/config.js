@@ -1,15 +1,13 @@
-const dotenv = require('dotenv');
-dotenv.config();
+require("dotenv").config();
 
-const config = {
-  port: process.env.PORT || 3000,
-  database: {
-    host: process.env.DB_HOST,
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    name: process.env.DB_NAME
+const { DB_USERNAME, DB_PASSWORD, DB_DIALECT, DB_NAME, DB_HOST } = process.env;
+
+module.exports = {
+  development: {
+    username: DB_USERNAME,
+    password: DB_PASSWORD,
+    database: DB_NAME,
+    host: DB_HOST,
+    dialect: DB_DIALECT,
   },
-  apiKey: process.env.API_KEY,
 };
-
-module.exports = config;
