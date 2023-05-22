@@ -28,9 +28,136 @@
                 ],
                 "summary": "Returns a list of products",
                 "description": "This is API for get all products data",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success get all products data"
+                    }
+                }
+            },
+
+
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Success create products",
+                "description": "This is API for create new products data",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success create products",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name_and_type": {
+                                        "type": "string",
+                                        "example": "Hyundai CRETA Active MT 6-speed ( Active )"
+                                    },
+                                    "detail": {
+                                        "type": "string",
+                                        "example": "SUV, White, 4, Matic"
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": "5"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "example": "350.000.000"
+                                    },
+                                    "imageUrl": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "https://img.salon.av.by/catalog/hyundai/creta/novaya_kreta/0b/b/1.jpg"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2020-01-07"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create new Products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name_and_type": {
+                                                    "type": "string",
+                                                    "example": "Hyundai CRETA Active MT 6-speed ( Active )"
+                                                },
+                                                "detail": {
+                                                    "type": "string",
+                                                    "example": "SUV, White, 4, Matic"
+                                                },
+                                                "stock": {
+                                                    "type": "integer",
+                                                    "example": "5"
+                                                },
+                                                "amount": {
+                                                    "type": "string",
+                                                    "example": "350.000.000"
+                                                },
+                                                "imageUrl": {
+                                                    "type": "string",
+                                                    "format": "text",
+                                                    "example": "https://img.salon.av.by/catalog/hyundai/creta/novaya_kreta/0b/b/1.jpg"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2020-01-07"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because products is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because products is empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -48,23 +175,17 @@
                         "bearerToken": []
                     }
                 ],
-                "requestBody": {
-                    "description": "Success search products",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name_and_type": {
-                                        "type": "string",
-                                        "example": "Mercedes Benz G-Class"
-                                    }                                
-                                }
-                            }
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Product name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
                         }
                     }
-                },
+                ],
                 "responses": {
                     "201": {
                         "description": "Success search product",
@@ -140,6 +261,7 @@
                 }
             }
     },
+     
 
     "/products/{id}": {
         "get": {
@@ -172,6 +294,40 @@
             }
         },
 
+
+        "delete": {
+            "tags": [
+                "Products"
+            ],
+            "summary": "Delete products by id",
+            "description": "This is API for delete products data",
+            "security": [
+                {
+                    "bearerToken": []
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "input ID of the shops to delete",
+                    "schema": {
+                        "type": "integer",
+                        "example": 7
+                    },
+                    "required": true
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Success delete this id"
+                },
+                "404":{
+                    "description": "This id is not found"
+                }
+            }
+        },
+
         "put": {
             "tags": [
                 "Products"
@@ -181,6 +337,18 @@
             "security": [
                 {
                     "bearerToken": []
+                }
+            ],
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Input ID of the shop to update",
+                    "schema": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "required": true
                 }
             ],
             "requestBody": {
@@ -269,152 +437,12 @@
                     }
                 }
             }                
-        },
-
-        "delete": {
-            "tags": [
-                "Products"
-            ],
-            "summary": "Delete products by id",
-            "description": "This is API for delete products data",
-            "security": [
-                {
-                    "bearerToken": []
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Success delete this id"
-                },
-                "404":{
-                    "description": "This id is not found"
-                }
-            }
         }
+ 
     },
 
-    "/products/create": {
-        "post": {
-            "tags": [
-                "Products"
-            ],
-            "summary": "Success create products",
-            "description": "This is API for create new products data",
-            "security": [
-                {
-                    "bearerToken": []
-                }
-            ],
-            "requestBody": {
-                "description": "Success create products",
-                "required": true,
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "name_and_type": {
-                                    "type": "string",
-                                    "example": "Hyundai CRETA Active MT 6-speed ( Active )"
-                                },
-                                "detail": {
-                                    "type": "string",
-                                    "example": "SUV, White, 4, Matic"
-                                },
-                                "stock": {
-                                    "type": "integer",
-                                    "example": "5"
-                                },
-                                "amount": {
-                                    "type": "string",
-                                    "example": "350.000.000"
-                                },
-                                "imageUrl": {
-                                    "type": "string",
-                                    "format": "text",
-                                    "example": "https://img.salon.av.by/catalog/hyundai/creta/novaya_kreta/0b/b/1.jpg"
-                                },
-                                "date": {
-                                    "type": "string",
-                                    "format": "date",
-                                    "example": "2020-01-07"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "201": {
-                    "description": "Success create new Products",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "status": {
-                                        "type": "string",
-                                        "example": "Success"
-                                    },
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "name_and_type": {
-                                                "type": "string",
-                                                "example": "Hyundai CRETA Active MT 6-speed ( Active )"
-                                            },
-                                            "detail": {
-                                                "type": "string",
-                                                "example": "SUV, White, 4, Matic"
-                                            },
-                                            "stock": {
-                                                "type": "integer",
-                                                "example": "5"
-                                            },
-                                            "amount": {
-                                                "type": "string",
-                                                "example": "350.000.000"
-                                            },
-                                            "imageUrl": {
-                                                "type": "string",
-                                                "format": "text",
-                                                "example": "https://img.salon.av.by/catalog/hyundai/creta/novaya_kreta/0b/b/1.jpg"
-                                            },
-                                            "date": {
-                                                "type": "string",
-                                                "format": "date",
-                                                "example": "2020-01-07"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "400": {
-                    "description": "Failed because products is empty",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "status": {
-                                        "type": "string",
-                                        "example": "failed"
-                                    },
-                                    "message": {
-                                        "type": "string",
-                                        "example": "Failed because products is empty"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
+        
+
 
             
     "/users/login": {
