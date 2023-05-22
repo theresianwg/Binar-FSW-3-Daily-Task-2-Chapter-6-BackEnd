@@ -1,15 +1,11 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Challenge FSW 3 chapter 5",
+        "title": "Daily Task 2 - Chapter 6",
         "description": "API description in Markdown.",
         "version": "1.0.0"
     },
     "tags": [
-        {
-            "name": "Shops",
-            "description": "This is API for managing CRUD SHOPS"
-        },
         {
             "name": "Products",
             "description": "This is API for managing CRUD PRODUCTS"
@@ -25,374 +21,6 @@
         }
     ],
     "paths": {
-        "/shops": {
-            "get": {
-                "tags": [
-                    "Shops"
-                ],
-                "summary": "Returns a list of shops",
-                "description": "This is API for get all shop data",
-                "responses": {
-                    "200": {
-                        "description": "Success get all shops data"
-                    }
-                }
-            }
-        },
-
-        "/shops/search": {
-            "get": {
-                "tags": [
-                    "Shops"
-                ],
-                "summary": "Success search shops",
-                "description": "This is API for search shops data",
-                "security": [
-                    {
-                        "bearerToken": []
-                    }
-                ],
-                "requestBody": {
-                    "description": "Success search shops",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "toko imam"
-                                    }                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Success search shops",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "Success"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "toko imam"
-                                                },
-                                                "city": {
-                                                    "type": "string",
-                                                    "example": "bandung"
-                                                },
-                                                "userId": {
-                                                    "type": "integer",
-                                                    "example": 1
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Failed because shops is empty",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "failed"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Failed because shops is empty"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-
-        "/shops/{id}":{
-            "get": {
-                "tags": [
-                    "Shops"
-                ],
-                "summary": "Returns a list of shops by id",
-                "description": "This is API for search shops data by id",
-                "security": [
-                    {
-                        "bearerToken": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Input ID of the shops to get",
-                        "schema": {
-                            "type": "integer",
-                            "example": 1
-                        },
-                        "required": true
-                    }
-                ], 
-                "responses": {
-                    "200": {
-                        "description": "Success get shops data by id"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "Shops"
-                ],
-                "summary": "Update shops by id",
-                "description": "This is API for update shop by id",
-                "security": [
-                    {
-                        "bearerToken": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Input ID of the shop to update",
-                        "schema": {
-                            "type": "integer",
-                            "example": 1
-                        },
-                        "required": true
-                    }
-                ],
-                "requestBody": {
-                    "description": "Success edit shop",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "toko jeno"
-                                    },
-                                    "city": {
-                                        "type": "string",
-                                        "example": "bandung"
-                                    },
-                                    "userId": {
-                                        "type": "integer",
-                                        "example": 1
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success update shop by id",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "Success"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "toko jeno"
-                                                },
-                                                "city": {
-                                                    "type": "string",
-                                                    "example": "bandung"
-                                                },
-                                                "userId": {
-                                                    "type": "integer",
-                                                    "example": 1
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Failed because name shop is empty",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "failed"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Failed because shop name empty"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }                
-            },
-
-            "delete": {
-                "tags": [
-                    "Shops"
-                ],
-                "summary": "Delete shops by id",
-                "description": "This is API for delete shops data by id",
-                "security": [
-                    {
-                        "bearerToken": []
-                    }
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "input ID of the shops to delete",
-                        "schema": {
-                            "type": "integer",
-                            "example": 1
-                        },
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Success delete this id"
-                    },
-                    "404":{
-                        "description": "This id is not found"
-                    }
-                }
-            }
-        },
-
-        "/shops/create": {
-            "post": {
-                "tags": [
-                    "Shops"
-                ],
-                "summary": "Success create shop",
-                "description": "This is API for create new shops data",
-                "security": [
-                    {
-                        "bearerToken": []
-                    }
-                ],
-                "requestBody": {
-                    "description": "Success create new shop",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "example": "toko imam"
-                                    },
-                                    "city": {
-                                        "type": "string",
-                                        "example": "bandung"
-                                    },
-                                    "userId": {
-                                        "type": "integer",
-                                        "example": 1
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Success create new Shop",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "Success"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "toko imam"
-                                                },
-                                                "city": {
-                                                    "type": "string",
-                                                    "example": "bandung"
-                                                },
-                                                "userId": {
-                                                    "type": "integer",
-                                                    "example": 1
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Failed because name shop is empty",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "status": {
-                                            "type": "string",
-                                            "example": "failed"
-                                        },
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Failed because shop name empty"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-
-
-
-
         "/products": {
             "get": {
                 "tags": [
@@ -428,9 +56,9 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "name": {
+                                    "name_and_type": {
                                         "type": "string",
-                                        "example": "Pajero"
+                                        "example": "Mercedes Benz G-Class"
                                     }                                
                                 }
                             }
@@ -452,21 +80,35 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "name": {
-                                                    "type": "string",
-                                                    "example": "Pajero"
-                                                },
-                                                "price": {
+                                                "userId": {
                                                     "type": "integer",
-                                                    "example": "4500000"
+                                                    "example": "1"
+                                                },
+                                                "name_and_type": {
+                                                    "type": "string",
+                                                    "example": "Mercedes Benz G-Class"
+                                                },
+                                                "detail": {
+                                                    "type": "string",
+                                                    "example": "SUV, Black, 4, Matic"
                                                 },
                                                 "stock": {
                                                     "type": "integer",
                                                     "example": "2"
                                                 },
-                                                "shopId": {
-                                                    "type": "integer",
-                                                    "example": "1"
+                                                "amount": {
+                                                    "type": "string",
+                                                    "example": "4.500.000.000"
+                                                },
+                                                "imageUrl": {
+                                                    "type": "string",
+                                                    "format": "text",
+                                                    "example": "https://i.ytimg.com/vi/f3-PloBeqM4/maxresdefault.jpg"
+                                                },
+                                                "date": {
+                                                    "type": "string",
+                                                    "format": "date",
+                                                    "example": "2021-07-20"
                                                 }
                                             }
                                         }
@@ -549,9 +191,9 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "name": {
+                                "name_and_type": {
                                     "type": "string",
-                                    "example": "Pajero"
+                                    "example": "Mercedes Benz G-Class"
                                 }
                             }
                         }
@@ -573,21 +215,31 @@
                                     "data": {
                                         "type": "object",
                                         "properties": {
-                                            "name": {
+                                            "name_and_type": {
                                                 "type": "string",
-                                                "example": "Pajero"
+                                                "example": "Mercedes Benz G-Class"
                                             },
-                                            "price": {
-                                                "type": "integer",
-                                                "example": "4500000"
+                                            "detail": {
+                                                "type": "string",
+                                                "example": "SUV, Black, 4, Matic"
                                             },
                                             "stock": {
                                                 "type": "integer",
-                                                "example": "1"
+                                                "example": "2"
                                             },
-                                            "shopId": {
-                                                "type": "integer",
-                                                "example": "1"
+                                            "amount": {
+                                                "type": "string",
+                                                "example": "4.500.000.000"
+                                            },
+                                            "imageUrl": {
+                                                "type": "string",
+                                                "format": "text",
+                                                "example": "https://i.ytimg.com/vi/f3-PloBeqM4/maxresdefault.jpg"
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2021-07-20"
                                             }
                                         }
                                     }
@@ -661,21 +313,31 @@
                         "schema": {
                             "type": "object",
                             "properties": {
-                                "name": {
+                                "name_and_type": {
                                     "type": "string",
-                                    "example": "Subaru"
+                                    "example": "Hyundai CRETA Active MT 6-speed ( Active )"
                                 },
-                                "price": {
-                                    "type": "integer",
-                                    "example": "3800000"
+                                "detail": {
+                                    "type": "string",
+                                    "example": "SUV, White, 4, Matic"
                                 },
                                 "stock": {
                                     "type": "integer",
-                                    "example": "3"
+                                    "example": "5"
                                 },
-                                "shopId": {
-                                    "type": "integer",
-                                    "example": "2"
+                                "amount": {
+                                    "type": "string",
+                                    "example": "350.000.000"
+                                },
+                                "imageUrl": {
+                                    "type": "string",
+                                    "format": "text",
+                                    "example": "https://img.salon.av.by/catalog/hyundai/creta/novaya_kreta/0b/b/1.jpg"
+                                },
+                                "date": {
+                                    "type": "string",
+                                    "format": "date",
+                                    "example": "2020-01-07"
                                 }
                             }
                         }
@@ -697,21 +359,31 @@
                                     "data": {
                                         "type": "object",
                                         "properties": {
-                                            "name": {
+                                            "name_and_type": {
                                                 "type": "string",
-                                                "example": "Subaru"
+                                                "example": "Hyundai CRETA Active MT 6-speed ( Active )"
                                             },
-                                            "price": {
-                                                "type": "integer",
-                                                "example": "3800000"
+                                            "detail": {
+                                                "type": "string",
+                                                "example": "SUV, White, 4, Matic"
                                             },
                                             "stock": {
                                                 "type": "integer",
-                                                "example": "3"
+                                                "example": "5"
                                             },
-                                            "shopId": {
-                                                "type": "integer",
-                                                "example": "2"
+                                            "amount": {
+                                                "type": "string",
+                                                "example": "350.000.000"
+                                            },
+                                            "imageUrl": {
+                                                "type": "string",
+                                                "format": "text",
+                                                "example": "https://img.salon.av.by/catalog/hyundai/creta/novaya_kreta/0b/b/1.jpg"
+                                            },
+                                            "date": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2020-01-07"
                                             }
                                         }
                                     }
@@ -744,167 +416,6 @@
         }
     },
 
-
-
-
-
-    "/users": {
-        "get": {
-            "tags": [
-                "Users"
-            ],
-            "summary": "Returns a list of users",
-            "description": "This is API for get all Users data",
-            "responses": {
-                "200": {
-                    "description": "Success get user data"
-                }
-            }
-        }
-    },
-
-    "/users/{id}": {
-        "get": {
-            "tags": [
-                "Users"
-            ],
-            "summary": "Returns a list of users by id",
-            "description": "This is API for get user data by id",
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "description": "Input ID of the user to get",
-                    "schema": {
-                        "type": "integer",
-                        "example": 1
-                    },
-                    "required": true
-                }
-            ], 
-            "security": [
-                {
-                    "bearerToken": []
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Success get user data by id"
-                }
-            }
-        }
-    },
-
-
-    "/users/register": {
-        "post": {
-            "tags": [
-                "Users"
-            ],
-            "summary": "Success create user",
-            "description": "This is API for create new user.",
-            "requestBody": {
-                "description": "Success create user",
-                "required": true,
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "username": {
-                                    "type": "string",
-                                    "example": "Ciwang"
-                                },
-                                "password": {
-                                    "type": "string",
-                                    "example": "ciwang931"
-                                },
-                                "role": {
-                                    "type": "string",
-                                    "example": "user"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "201": {
-                    "description": "Success create new User",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "status": {
-                                        "type": "string",
-                                        "example": "Success"
-                                    },
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "name": {
-                                                "type": "string",
-                                                "example": "Ciwang"
-                                            },
-                                            "password": {
-                                                "type": "string",
-                                                "example": "ciwang931"
-                                            },
-                                            "role": {
-                                                "type": "string",
-                                                "example": "user"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "400": {
-                    "description": "Failed because username is empty",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "status": {
-                                        "type": "string",
-                                        "example": "failed"
-                                    },
-                                    "message": {
-                                        "type": "string",
-                                        "example": "Failed because username is empty"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "404": {
-                    "description": "Failed because username is already exist",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "status": {
-                                        "type": "string",
-                                        "example": "failed"
-                                    },
-                                    "message": {
-                                        "type": "string",
-                                        "example": "Failed because username is already exist"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    },
             
     "/users/login": {
         "post": {
@@ -923,11 +434,11 @@
                             "properties": {
                                 "username": {
                                     "type": "string",
-                                    "example": "Ciwang"
+                                    "example": "ciwang"
                                 },
                                 "password": {
                                     "type": "string",
-                                    "example": "ciwang931"
+                                    "example": "rahasia"
                                 }
                             }
                         }
@@ -951,15 +462,11 @@
                                         "properties": {
                                             "name": {
                                                 "type": "string",
-                                                "example": "Ciwang"
+                                                "example": "ciwang"
                                             },
                                             "password": {
                                                 "type": "string",
-                                                "example": "ciwang931"
-                                            },
-                                            "role": {
-                                                "type": "string",
-                                                "example": "user"
+                                                "example": "rahasia"
                                             }
                                         }
                                     }
@@ -989,150 +496,23 @@
                     }
                 }
             }
-    },
-
-        "put": {
-            "tags": [
-                "Users"
-            ],
-            "summary": "Update users by id",
-            "description": "This is API for update user data by id",
-            "security": [
-                {
-                    "bearerToken": []
-                }
-            ],
-            "requestBody": {
-                "description": "Success edit user",
-                "required": true,
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "username": {
-                                    "type": "string",
-                                    "example": "Ressy"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "responses": {
-                "200": {
-                    "description": "Success update user by id",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "status": {
-                                        "type": "string",
-                                        "example": "Success"
-                                    },
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "username": {
-                                                "type": "string",
-                                                "example": "Ressy"
-                                            },
-                                            "password": {
-                                                "type": "string",
-                                                "example": "ciwang931"
-                                            },
-                                            "role": {
-                                                "type": "string",
-                                                "example": "user"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "400": {
-                    "description": "Failed because username is empty",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "status": {
-                                        "type": "string",
-                                        "example": "failed"
-                                    },
-                                    "message": {
-                                        "type": "string",
-                                        "example": "Failed because username is empty"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }                
-        },
-
-        "delete": {
-            "tags": [
-                "Users"
-            ],
-            "summary": "Delete users by id",
-            "description": "This is API for delete user data by id",
-            "security": [
-                {
-                    "bearerToken": []
-                }
-            ],
-            "responses": {
-                "200": {
-                    "description": "Success delete this id"
-                },
-                "404":{
-                    "description": "This id is not found"
-                }
-            }
-        }
+         }
     }
 },
      
     "components": {
       "schemas": {
-          "shops": {
-              "type": "object",
-              "properties": {
-                  "name": {
-                      "type": "string",
-                      "example": "toko imam"
-                  },
-                  "city": {
-                      "type": "string",
-                      "example": "bandung"
-                  },
-                  "userId": {
-                      "type": "integer",
-                      "example": 1
-                  }
-              }
-          },
 
           "users": {
               "type": "object",
               "properties": {
                   "username": {
                       "type": "string",
-                      "example": "Ciwang"
+                      "example": "ciwang"
                   },
                   "password": {
                       "type": "string",
-                      "example": "ciwang931"
-                  },
-                  "role": {
-                      "type": "string",
-                      "example": "user"
+                      "example": "rahasia"
                   }
               }
           },
@@ -1140,23 +520,37 @@
           "products": {
               "type": "object",
               "properties": {
-                  "name": {
-                      "type": "string",
-                      "example": "Pajero"
-                  },
-                  "price": {
-                      "type": "integer",
-                      "example": "4500000"
-                  },
-                  "stock": {
-                      "type": "integer",
-                      "example": "2"
-                  },
-                  "shopId": {
-                      "type": "integer",
-                      "example": "1"
-                  }
-              }
+                "userId": {
+                    "type": "integer",
+                    "example": "1"
+                },
+                "name_and_type": {
+                    "type": "string",
+                    "example": "Mercedes Benz G-Class"
+                },
+                "detail": {
+                    "type": "string",
+                    "example": "SUV, Black, 4, Matic"
+                },
+                "stock": {
+                    "type": "integer",
+                    "example": "2"
+                },
+                "amount": {
+                    "type": "string",
+                    "example": "4.500.000.000"
+                },
+                "imageUrl": {
+                    "type": "string",
+                    "format": "text",
+                    "example": "https://i.ytimg.com/vi/f3-PloBeqM4/maxresdefault.jpg"
+                },
+                "date": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2021-07-20"
+                }
+            }
           }
       },
       "securitySchemes": {
