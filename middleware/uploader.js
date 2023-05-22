@@ -1,15 +1,15 @@
-const multer = require('multer');
+const multer = require("multer");
 
-const multerFiltering = (req, file, cb) => {
-    if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
-        cb(null, true)
-    } else {
-        return cb(console.log('gagal upload file karena bukan image'))
-    }
-}
+const filter = (req, file, cb) => {
+  if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
 const upload = multer({
-    fileFilter: multerFiltering
-})
+  fileFilter: filter,
+}).single("imageUrl");
 
-module.exports = upload
+module.exports = upload;

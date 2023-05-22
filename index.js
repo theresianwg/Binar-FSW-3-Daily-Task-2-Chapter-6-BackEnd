@@ -1,7 +1,7 @@
 require("dotenv").config();
 // import atau panggil package yang kita mau pake di aplikasi kita
 const express = require("express");
-
+const routes = require("./routes");
 // untuk baca public directory
 const path = require("path");
 
@@ -21,13 +21,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
-const routes = require("./routes");
-
 // public
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "controller")));
+// app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "controller")));
 
-app.use(routes);
+app.use("/api/v1", routes);
 
 // memulai server nya
 app.listen(PORT, () => {

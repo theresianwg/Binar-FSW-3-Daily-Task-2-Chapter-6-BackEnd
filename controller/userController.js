@@ -37,10 +37,8 @@ async function login(req, res) {
 
       res.status(200).json({
         status: "success",
-        data: {
-          user,
-          token,
-        },
+        user,
+        token,
       });
     }
   } catch (err) {

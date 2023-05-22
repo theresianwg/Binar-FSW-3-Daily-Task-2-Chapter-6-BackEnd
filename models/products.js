@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true, // Tambahkan baris ini
         autoIncrement: true,
       },
+      userId: DataTypes.INTEGER,
       name_and_type: DataTypes.STRING,
       detail: DataTypes.STRING,
       stock: DataTypes.INTEGER,
