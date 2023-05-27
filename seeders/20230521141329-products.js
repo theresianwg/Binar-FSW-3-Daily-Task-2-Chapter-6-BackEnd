@@ -7,7 +7,6 @@ module.exports = {
       "products",
       [
         {
-          id: "1",
           name_and_type: "Mercedes Benz",
           detail: "SUV, Black, 4, Matic",
           stock: 2,
@@ -16,8 +15,8 @@ module.exports = {
           date: new Date(2021, 7, 20),
           createdAt: new Date(),
           updatedAt: new Date(),
-
-          id: "2",
+        },
+        {
           name_and_type: "Hyundai CRETA Active",
           detail: "SUV, White, 4, Matic",
           stock: 5,

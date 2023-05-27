@@ -26,264 +26,18 @@
         "tags": ["Products"],
         "summary": "Returns a list of products",
         "description": "This is API for get all products data",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success get all products data"
           }
         }
-      }
-    },
-
-    "/products/search": {
-      "get": {
-        "tags": ["Products"],
-        "summary": "Success search products",
-        "description": "This is API for search products data",
-        "security": [
-          {
-            "bearerToken": []
-          }
-        ],
-        "requestBody": {
-          "description": "Success search products",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name_and_type": {
-                    "type": "string",
-                    "example": "Mercedes Benz G-Class"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Success search product",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "Success"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "userId": {
-                          "type": "integer",
-                          "example": "1"
-                        },
-                        "name_and_type": {
-                          "type": "string",
-                          "example": "Mercedes Benz G-Class"
-                        },
-                        "detail": {
-                          "type": "string",
-                          "example": "SUV, Black, 4, Matic"
-                        },
-                        "stock": {
-                          "type": "integer",
-                          "example": "2"
-                        },
-                        "amount": {
-                          "type": "string",
-                          "example": "4.500.000.000"
-                        },
-                        "imageUrl": {
-                          "type": "string",
-                          "format": "text",
-                          "example": "https://i.ytimg.com/vi/f3-PloBeqM4/maxresdefault.jpg"
-                        },
-                        "date": {
-                          "type": "string",
-                          "format": "date",
-                          "example": "2021-07-20"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Failed because products is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "failed"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Failed because products is empty"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-
-    "/products/{id}": {
-      "get": {
-        "tags": ["Products"],
-        "summary": "Returns a list of products by id",
-        "description": "This is API for get products data by id",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Input ID of the products to get",
-            "schema": {
-              "type": "integer",
-              "example": 1
-            },
-            "required": true
-          }
-        ],
-        "security": [
-          {
-            "bearerToken": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success get products data by id"
-          }
-        }
       },
 
-      "put": {
-        "tags": ["Products"],
-        "summary": "Update products by id",
-        "description": "This is API for update products data by id",
-        "security": [
-          {
-            "bearerToken": []
-          }
-        ],
-        "requestBody": {
-          "description": "Success edit product",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name_and_type": {
-                    "type": "string",
-                    "example": "Mercedes Benz G-Class"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Success update product by id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "Success"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "name_and_type": {
-                          "type": "string",
-                          "example": "Mercedes Benz G-Class"
-                        },
-                        "detail": {
-                          "type": "string",
-                          "example": "SUV, Black, 4, Matic"
-                        },
-                        "stock": {
-                          "type": "integer",
-                          "example": "2"
-                        },
-                        "amount": {
-                          "type": "string",
-                          "example": "4.500.000.000"
-                        },
-                        "imageUrl": {
-                          "type": "string",
-                          "format": "text",
-                          "example": "https://i.ytimg.com/vi/f3-PloBeqM4/maxresdefault.jpg"
-                        },
-                        "date": {
-                          "type": "string",
-                          "format": "date",
-                          "example": "2021-07-20"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Failed because name product is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "failed"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Failed because name product is empty"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-
-      "delete": {
-        "tags": ["Products"],
-        "summary": "Delete products by id",
-        "description": "This is API for delete products data",
-        "security": [
-          {
-            "bearerToken": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success delete this id"
-          },
-          "404": {
-            "description": "This id is not found"
-          }
-        }
-      }
-    },
-
-    "/products/create": {
       "post": {
         "tags": ["Products"],
         "summary": "Success create products",
@@ -394,6 +148,273 @@
                     "message": {
                       "type": "string",
                       "example": "Failed because products is empty"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/products/search": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Success search products",
+        "description": "This is API for search products data",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Product name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success search product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "userId": {
+                          "type": "integer",
+                          "example": "1"
+                        },
+                        "name_and_type": {
+                          "type": "string",
+                          "example": "Mercedes Benz G-Class"
+                        },
+                        "detail": {
+                          "type": "string",
+                          "example": "SUV, Black, 4, Matic"
+                        },
+                        "stock": {
+                          "type": "integer",
+                          "example": "2"
+                        },
+                        "amount": {
+                          "type": "string",
+                          "example": "4.500.000.000"
+                        },
+                        "imageUrl": {
+                          "type": "string",
+                          "format": "text",
+                          "example": "https://i.ytimg.com/vi/f3-PloBeqM4/maxresdefault.jpg"
+                        },
+                        "date": {
+                          "type": "string",
+                          "format": "date",
+                          "example": "2021-07-20"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed because products is empty",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Failed because products is empty"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/products/{id}": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Returns a list of products by id",
+        "description": "This is API for get products data by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Input ID of the products to get",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get products data by id"
+          }
+        }
+      },
+
+      "delete": {
+        "tags": ["Products"],
+        "summary": "Delete products by id",
+        "description": "This is API for delete products data",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "input ID of the shops to delete",
+            "schema": {
+              "type": "integer",
+              "example": 7
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete this id"
+          },
+          "404": {
+            "description": "This id is not found"
+          }
+        }
+      },
+
+      "put": {
+        "tags": ["Products"],
+        "summary": "Update products by id",
+        "description": "This is API for update products data by id",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Input ID of the shop to update",
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "description": "Success edit product",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name_and_type": {
+                    "type": "string",
+                    "example": "Mercedes Benz G-Class"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update product by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "Success"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "name_and_type": {
+                          "type": "string",
+                          "example": "Mercedes Benz G-Class"
+                        },
+                        "detail": {
+                          "type": "string",
+                          "example": "SUV, Black, 4, Matic"
+                        },
+                        "stock": {
+                          "type": "integer",
+                          "example": "2"
+                        },
+                        "amount": {
+                          "type": "string",
+                          "example": "4.500.000.000"
+                        },
+                        "imageUrl": {
+                          "type": "string",
+                          "format": "text",
+                          "example": "https://i.ytimg.com/vi/f3-PloBeqM4/maxresdefault.jpg"
+                        },
+                        "date": {
+                          "type": "string",
+                          "format": "date",
+                          "example": "2021-07-20"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed because name product is empty",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "failed"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Failed because name product is empty"
                     }
                   }
                 }
